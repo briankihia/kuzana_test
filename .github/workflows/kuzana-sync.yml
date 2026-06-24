@@ -1,0 +1,30 @@
+# Save this file inside your Obsidian notes repository as `.github/workflows/kuzana-sync.yml`
+name: Sync Obsidian Vault to Kuzana-Brain
+on:
+  push:
+    branches:
+      - main  # Trigger sync every time you push to the main branch
+  workflow_dispatch: # Enable running the sync manually from the GitHub UI
+jobs:
+  sync-vault:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out notes repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - name: Run Sync Script
+        run: |
+          # Downloads the latest sync utility directly from your repository script
+          curl -sS -o kuzana-sync.py https://raw.githubusercontent.com/briankihia/kuzana/main/backend/kuzana-sync.py
+          
+          python kuzana-sync.py \
+            --vault "./" \
+            --url "${{ secrets.KUZANA_URL }}" \
+            --token "${{ secrets.KUZANA_SYNC_TOKEN }}"

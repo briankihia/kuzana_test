@@ -1,0 +1,9 @@
+{
+  "baseFontSize": 16,
+  "baseTheme": "dark",
+  "theme": "obsidian",
+  "translucency": false,
+  "useTab": true,
+  "lineNumbers": false,
+  "readableLineLength": true
+}

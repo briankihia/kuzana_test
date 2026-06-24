@@ -1,0 +1,27 @@
+{
+  "main": {
+    "id": "0",
+    "type": "split",
+    "children": [
+      {
+        "id": "1",
+        "type": "tabs",
+        "children": []
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2",
+    "type": "sidebar",
+    "children": []
+  },
+  "right": {
+    "id": "3",
+    "type": "sidebar",
+    "children": [],
+    "collapsed": true
+  },
+  "active": "1",
+  "lastOpenFiles": []
+}
