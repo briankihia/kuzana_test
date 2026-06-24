@@ -21,9 +21,7 @@ jobs:
           pip install requests
       - name: Run Sync Script
         run: |
-          # Downloads the latest sync utility directly from your repository script
-          curl -sS -o kuzana-sync.py https://raw.githubusercontent.com/briankihia/kuzana/main/backend/kuzana-sync.py
-          
+          # Run the local script directly (no curl needed)
           python kuzana-sync.py \
             --vault "./" \
             --url "${{ secrets.KUZANA_URL }}" \
