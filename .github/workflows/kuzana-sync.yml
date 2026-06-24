@@ -1,18 +1,15 @@
-# Save this file inside your Obsidian notes repository as `.github/workflows/kuzana-sync.yml`
 name: Sync Obsidian Vault to Kuzana-Brain
 on:
   push:
     branches:
-      - main  # Trigger sync every time you push to the main branch
-  workflow_dispatch: # Enable running the sync manually from the GitHub UI
+      - main
+  workflow_dispatch:
 jobs:
   sync-vault:
     runs-on: ubuntu-latest
     steps:
-      # Upgraded to v4 to fix Node.js 20 deprecation warning
       - name: Check out notes repository
         uses: actions/checkout@v4
-      # Upgraded to v5 to fix Node.js 20 deprecation warning
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -23,8 +20,8 @@ jobs:
           pip install requests
       - name: Run Sync Script
         run: |
-          # Runs the script directly from your checked-out files
           python backend/kuzana-sync.py \
             --vault "./" \
             --url "https://kuzana.onrender.com" \
             --token "kz_sync_dev_token"
+
