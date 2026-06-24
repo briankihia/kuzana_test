@@ -9,10 +9,12 @@ jobs:
   sync-vault:
     runs-on: ubuntu-latest
     steps:
+      # Upgraded to v4 to fix Node.js 20 deprecation warning
       - name: Check out notes repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      # Upgraded to v5 to fix Node.js 20 deprecation warning
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       - name: Install dependencies
@@ -21,8 +23,8 @@ jobs:
           pip install requests
       - name: Run Sync Script
         run: |
-          # Run the local script directly (no curl needed)
-          python kuzana-sync.py \
+          # Runs the script directly from your checked-out files
+          python backend/kuzana-sync.py \
             --vault "./" \
-            --url "${{ secrets.KUZANA_URL }}" \
-            --token "${{ secrets.KUZANA_SYNC_TOKEN }}"
+            --url "https://kuzana.onrender.com" \
+            --token "kz_sync_dev_token"
